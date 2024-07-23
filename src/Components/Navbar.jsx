@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 const Navbar = () => {
   const [selectedValue, setSelectedValue] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [profile, setProfile] = useState(false);
 
   const handleSelectChange = (option) => {
     setSelectedValue(option);
@@ -14,12 +15,12 @@ const Navbar = () => {
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);
   };
-
-  const options = [
-    { value: 'option1', label: 'Option 1' },
-    { value: 'option2', label: 'Option 2' },
-    { value: 'option3', label: 'Option 3' }
-  ];
+  function showprofile() {
+    setProfile(true)
+  }
+  function hideProfile() {
+    setProfile(false)
+  }
 
   return (
     <header className='absolute inset-x-0 top-0 z-50 flex justify-center'>
@@ -27,84 +28,67 @@ const Navbar = () => {
         <ul className='flex justify-center gap-10'>
           <motion.li
             initial={{ backgroundColor: "transparent" }}
-            whileHover={{ 
+            whileHover={{
               backgroundColor: "white",
               color: "black",
               transition: { duration: 1 }
             }}
-            className='w-28 h-12 flex justify-center items-center rounded-full cursor-pointer hover:bg-green-500 transition duration-1000'
+            className='w-28 h-12 flex justify-center items-center rounded-full cursor-pointer text-white hover:bg-green-500 transition duration-1000'
           >
-            <Link to="/">Home</Link>
+            Home
           </motion.li>
           <motion.li
             initial={{ backgroundColor: "transparent" }}
-            whileHover={{ 
+            whileHover={{
               backgroundColor: "white",
               color: "black",
               transition: { duration: 1 }
             }}
-            className='w-28 h-12 flex justify-center items-center rounded-full cursor-pointer hover:bg-green-500 transition duration-1000'
+            className='w-28 h-12 flex justify-center  text-white items-center rounded-full cursor-pointer hover:bg-green-500 transition duration-1000'
           >
-            <Link to="/about">About</Link>
+            About
           </motion.li>
           <motion.li
             initial={{ backgroundColor: "transparent" }}
-            whileHover={{ 
+            whileHover={{
               backgroundColor: "white",
               color: "black",
               transition: { duration: 1 }
             }}
-            className='w-28 h-12 flex justify-center items-center rounded-full cursor-pointer hover:bg-green-500 transition duration-1000'
+            className='w-28 h-12 flex justify-center  text-white items-center rounded-full cursor-pointer hover:bg-green-500 transition duration-1000'
           >
-            <Link to="/contact">Contact</Link>
+            Contact
           </motion.li>
-          <motion.li
-            initial={{ backgroundColor: "transparent" }}
-            whileHover={{ 
-              backgroundColor: "white",
-              color: "black",
-              transition: { duration: 1 }
-            }}
-            className='w-28 h-12 flex justify-center items-center rounded-full cursor-pointer hover:bg-green-500 transition duration-1000 relative'
-          >
-            <div onClick={toggleDropdown} className="cursor-pointer">Select</div>
-            <AnimatePresence>
-              {isDropdownOpen && (
-                <motion.ul
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.3 }}
-                  
-                  className="absolute top-12 left-0 w-full bg-white border border-gray-300 rounded-md shadow-sm mt-1 overflow-hidden z-50"
-                >
-                  {options.map((option) => (
-                    <motion.li
-                      key={option.value}
-                      className=" p-2 hover:bg-gray-100 cursor-pointer"
-                      onClick={() => handleSelectChange(option.value)}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      {option.label}
-                    </motion.li>
-                  ))}
-                </motion.ul>
-              )}
-            </AnimatePresence>
-          </motion.li>
-           
-        </ul> 
-        <div className='profile-icon w-8 h-8 flex justify-center items-center mt-2 ml-28 border-2 rounded-full'>
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
-</svg>
+
+
+        </ul>
+        <div className='profile-icon w-8 h-8 flex  text-white justify-center items-center mt-2 ml-28 border-2 rounded-full'>
+          <svg xmlns="http://www.w3.org/2000/svg" onClick={showprofile} fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+          </svg>
 
         </div>
-       
+
       </div>
+      {profile && (
+        <motion.div
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -50 }}
+          className="absolute inset-0 flex justify-center h-screen w-full items-center bg-black bg-opacity-50"
+          onClick={hideProfile}
+        >
+          <div className="bg-white p-8 rounded-lg shadow-lg bg-opacity-50">
+            <h1 className="text-2xl font-bold">Hi, I am User</h1>
+
+            <h1>User Name</h1>
+            <p>User Details</p>
+
+          </div>
+        </motion.div>
+      )}
+
+
     </header>
   );
 };
