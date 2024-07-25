@@ -100,9 +100,14 @@ const Navbar = () => {
                   </div>
                 </div>
                 <div className=" relative top-12  flex justify-center ">
-                  <div className="p-1 border-4 border-black rounded-full">
+                  <motion.div
+                    initial={{ opacity: 0, x: -400 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1 }}
+                    exit={{ opacity: 0, x: -400 }}
+                    className="p-1 border-4 border-black rounded-full">
                     <img src={Avatar} alt="" className="size-24 rounded-full" />
-                  </div>
+                  </motion.div>
                 </div>
               </div>
               <div className='bg-white  rounded-b-lg p-2 pt-8 pb-4 bg-opacity-50'>
@@ -112,7 +117,12 @@ const Navbar = () => {
                 <p className="text-lg font-bold my-4">Address</p>
 
 
-                <div className='flex justify-center bg-black bg-opacity-50 rounded-full p-2'>
+                <motion.div
+                  initial={{ opacity: 0, x: -400 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 1 }}
+                  exit={{ opacity: 0, x: -400 }}
+                  className='flex justify-center bg-black bg-opacity-50 rounded-full p-2'>
                   <ul className='flex space-x-6'>
                     <motion.li whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className='  p-1 rounded-full hover:text-red-600'> <FaInstagram className='size-6' /></motion.li>
                     <motion.li whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className='  p-1 rounded-full hover:text-blue-700'> <FaFacebookSquare className='size-6' /></motion.li>
@@ -120,7 +130,7 @@ const Navbar = () => {
                     <motion.li whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.9 }} className='  p-1 rounded-full hover:text-blue-700'> <FaLinkedin className='size-6' /></motion.li>
 
                   </ul>
-                </div>
+                </motion.div>
               </div>
             </div>
           </motion.div>

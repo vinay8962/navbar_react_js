@@ -1,5 +1,5 @@
 import React from 'react';
-import Image from '../assets/milky-way-8149815.jpg';
+import Image from '../assets/21328932_6361475.jpg';
 import { motion } from 'framer-motion';
 
 const Home = () => {
