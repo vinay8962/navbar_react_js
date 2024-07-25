@@ -8,18 +8,9 @@ import Avatar from '../assets/portrait-handsome-hipster-man-glasses-3d-rendering
 
 
 const Navbar = () => {
-  const [selectedValue, setSelectedValue] = useState('');
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const [profile, setProfile] = useState(false);
 
-  const handleSelectChange = (option) => {
-    setSelectedValue(option);
-    setIsDropdownOpen(false);
-  };
-
-  const toggleDropdown = () => {
-    setIsDropdownOpen((prev) => !prev);
-  };
   function showprofile() {
     setProfile(true)
   }
@@ -77,9 +68,6 @@ const Navbar = () => {
       </div>
       {profile && (
         <motion.div
-          // initial={{ opacity: 0, y: -50 }}
-          // animate={{ opacity: 1, y: 0 }}
-          // exit={{ opacity: 0, y: -50 }}
           className="absolute inset-0 flex justify-center h-screen w-full items-center bg-black bg-opacity-50"
 
         >
